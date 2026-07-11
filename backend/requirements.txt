@@ -1,0 +1,15 @@
+# Versions relevées le 2026-07-09 : `pip-audit` remontait 10 vulnérabilités connues, dont 8 dans
+# Starlette (le coeur de FastAPI). Bloquant avant toute exposition sur Internet.
+# fastapi 0.115.6 épingle starlette < 0.42 : il fallait donc monter FastAPI pour sortir des CVE.
+# Après mise à jour : `pip-audit` -> "No known vulnerabilities found", 53 tests verts, ruff vert.
+fastapi==0.139.0
+uvicorn[standard]==0.34.0
+sqlmodel==0.0.22
+httpx==0.28.1
+pydantic-settings==2.7.1
+python-dotenv==1.2.2
+groq>=0.12.0
+pytest==9.1.1
+
+# Optionnel : pont Bluetooth (ECOWATT_BLE=1). Installer avec :  pip install bleak
+# bleak==0.22.3

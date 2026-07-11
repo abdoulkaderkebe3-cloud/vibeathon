@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>EcoWatt - Pitch</title>
+<style>
+  @page { size: 297mm 167mm; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { font-family: "Segoe UI", system-ui, -apple-system, sans-serif; }
+
+  .slide {
+    position: relative;
+    width: 297mm; height: 167mm;
+    padding: 20mm 24mm;
+    display: flex; flex-direction: column; justify-content: center;
+    overflow: hidden;
+    page-break-after: always;
+  }
+  .slide:last-child { page-break-after: auto; }
+
+  /* Thèmes */
+  .dark  { background: linear-gradient(135deg, #140d03 0%, #2e1f07 55%, #3f2b09 100%); color: #fdf3df; }
+  .light { background: #fffdf8; color: #1c1305; }
+  .glow::before {
+    content: ""; position: absolute; top: -30mm; right: -30mm;
+    width: 120mm; height: 120mm; border-radius: 50%;
+    background: radial-gradient(circle, rgba(245,166,35,0.28), transparent 70%);
+  }
+
+  /* Composants */
+  .kicker { font-size: 12pt; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; opacity: .8; margin-bottom: 8mm; }
+  .tag {
+    display: inline-block; align-self: flex-start;
+    font-size: 10.5pt; letter-spacing: 2px; text-transform: uppercase; font-weight: 800;
+    padding: 3mm 6mm; border-radius: 40px; margin-bottom: 9mm;
+  }
+  .tag.pb { background: rgba(245,166,35,0.16); color: #ffcf7a; border: 1px solid rgba(245,166,35,0.4); }
+  .tag.sol { background: #fdecc8; color: #a9631a; border: 1px solid #eec277; }
+
+  h1.cover { font-size: 78pt; font-weight: 900; letter-spacing: -1px; line-height: .95; }
+  h1.cover .zap { color: #f5a623; }
+  .title { font-size: 40pt; font-weight: 800; line-height: 1.08; letter-spacing: -.5px; }
+  .title.big { font-size: 48pt; }
+  .title.huge { font-size: 54pt; }
+  .accent { color: #e0952a; }
+  .dark .accent { color: #ffc061; }
+
+  .sub { font-size: 19pt; font-weight: 400; line-height: 1.4; margin-top: 8mm; max-width: 210mm; opacity: .92; }
+  .sub.lead { font-size: 22pt; }
+
+  ul.points { list-style: none; margin-top: 9mm; }
+  ul.points li { font-size: 20pt; line-height: 1.5; padding-left: 12mm; position: relative; margin-bottom: 4mm; }
+  ul.points li::before { content: ""; position: absolute; left: 0; top: 9pt; width: 6mm; height: 6mm; border-radius: 50%; background: #f5a623; }
+
+  .cards { display: flex; gap: 8mm; margin-top: 11mm; }
+  .card { flex: 1; background: #fff; border: 1px solid #eecb8c; border-radius: 6mm; padding: 8mm; box-shadow: 0 4mm 10mm rgba(180,120,20,0.10); }
+  .card .num { font-size: 15pt; font-weight: 900; color: #e0952a; }
+  .card .ct { font-size: 17pt; font-weight: 800; margin: 3mm 0 2mm; text-transform: uppercase; letter-spacing: 1px; }
+  .card .cd { font-size: 13.5pt; line-height: 1.4; opacity: .85; }
+
+  .trio { display: flex; gap: 10mm; margin-top: 12mm; }
+  .trio .t { flex: 1; text-align: center; }
+  .trio .em { font-size: 34pt; }
+  .trio .tx { font-size: 16pt; font-weight: 700; margin-top: 3mm; line-height: 1.3; }
+
+  .names { font-size: 21pt; line-height: 1.9; margin-top: 8mm; }
+  .names b { color: #e0952a; }
+
+  .note { position: absolute; left: 24mm; right: 24mm; bottom: 12mm; font-size: 11pt; font-style: italic; opacity: .62; line-height: 1.35; }
+  .foot { position: absolute; left: 24mm; bottom: 7mm; font-size: 9.5pt; letter-spacing: 1px; opacity: .5; text-transform: uppercase; }
+  .pg { position: absolute; right: 24mm; bottom: 7mm; font-size: 9.5pt; opacity: .5; }
+</style>
+</head>
+<body>
+
+<!-- 1. COUVERTURE -->
+<section class="slide dark glow">
+  <div class="kicker">Vibeathon Côte d'Ivoire 2026 · Secteur Énergie</div>
+  <h1 class="cover"><span class="zap">⚡</span> EcoWatt</h1>
+  <div class="sub lead">L'électricité enfin visible. Appareil par appareil.<br>Une IA qui coupe le gaspillage, et vous explique tout.</div>
+  <div class="foot">Coding Team</div>
+  <div class="pg">01</div>
+</section>
+
+<!-- 2. ACCROCHE -->
+<section class="slide dark">
+  <span class="tag pb">Le problème</span>
+  <div class="title big">« Combien vous coûte votre réfrigérateur,<br>là, <span class="accent">ce mois-ci</span> ? »</div>
+  <div class="sub">Personne ne peut répondre. Et pourtant, on va tous payer la facture.</div>
+  <div class="note">🎤 Poser la question, demander au jury de lever la main, puis laisser 3 secondes de silence. Personne ne lève la main. « C'est de ça que je veux vous parler. »</div>
+  <div class="foot">EcoWatt</div><div class="pg">02</div>
+</section>
+
+<!-- 3. AWA -->
+<section class="slide dark">
+  <span class="tag pb">Le problème</span>
+  <div class="title">Voici Awa. Yopougon.</div>
+  <ul class="points">
+    <li>Elle gère son foyer au franc près.</li>
+    <li>À la fin du bimestre, sa facture CIE tombe. Elle a encore augmenté.</li>
+    <li>Le ventilateur ? Le vieux frigo ? Le fer à repasser ? <span class="accent">Elle ne sait pas.</span></li>
+  </ul>
+  <div class="note">🎤 Parler d'Awa comme d'une vraie personne, pas d'un « cas d'usage ». Le jury doit la voir.</div>
+  <div class="foot">EcoWatt</div><div class="pg">03</div>
+</section>
+
+<!-- 4. PREPAYE -->
+<section class="slide dark">
+  <span class="tag pb">Le problème</span>
+  <div class="title">Le crédit qui s'éteint à 21h.<br>En pleine chaleur.</div>
+  <div class="sub">On recharge 1000, 2000 francs sur le compteur à carte, et ça fond sans qu'on comprenne comment. On appelle ça « l'arnaque du compteur à carte ». Ce n'en est pas une. On achète juste quelque chose qu'on ne voit pas.</div>
+  <div class="foot">EcoWatt</div><div class="pg">04</div>
+</section>
+
+<!-- 5. INSIGHT -->
+<section class="slide dark glow">
+  <span class="tag pb">Le problème</span>
+  <div class="title big">L'électricité est le seul produit<br>qu'on achète <span class="accent">les yeux fermés.</span></div>
+  <div class="sub">Le riz, on voit le sac. L'essence, on compte les litres. L'électricité ? Invisible. On ne sait pas ce qu'on consomme, ni quel appareil dépense quoi. On découvre le prix seulement à la fin, trop tard pour agir.</div>
+  <div class="note">🎤 LE slide clé. Ralentir. C'est l'idée qui doit rester dans la tête du jury.</div>
+  <div class="foot">EcoWatt</div><div class="pg">05</div>
+</section>
+
+<!-- 6. AMPLEUR -->
+<section class="slide dark">
+  <span class="tag pb">Le problème</span>
+  <div class="title">Ce n'est pas qu'une facture.</div>
+  <div class="trio">
+    <div class="t"><div class="em">💸</div><div class="tx">De l'argent<br>gaspillé</div></div>
+    <div class="t"><div class="em">🌍</div><div class="tx">Du CO₂<br>émis pour rien</div></div>
+    <div class="t"><div class="em">😔</div><div class="tx">Aucun<br>contrôle</div></div>
+  </div>
+  <div class="sub" style="text-align:center; margin-top:11mm;">Le gaspillage invisible d'Awa, multiplié par des millions de foyers.</div>
+  <div class="foot">EcoWatt</div><div class="pg">06</div>
+</section>
+
+<!-- 7. BASCULE -->
+<section class="slide dark glow">
+  <div class="title huge">Et si votre maison pouvait<br><span class="accent">voir, comprendre, et agir</span><br>toute seule ?</div>
+  <div class="note">🎤 Marquer une pause. « Ce n'est pas de la science-fiction. On l'a construit. » Enchaîner sur EcoWatt.</div>
+  <div class="foot">EcoWatt</div><div class="pg">07</div>
+</section>
+
+<!-- 8. SOLUTION -->
+<section class="slide light">
+  <span class="tag sol">La solution</span>
+  <div class="title big"><span class="accent">EcoWatt</span></div>
+  <div class="sub lead">Un réseau de prises intelligentes, piloté par une IA, qui <b>mesure chaque appareil</b>, <b>coupe le gaspillage</b>, et <b>vous explique tout</b> en français simple.</div>
+  <div class="foot">EcoWatt</div><div class="pg">08</div>
+</section>
+
+<!-- 9. COMMENT CA MARCHE -->
+<section class="slide light">
+  <span class="tag sol">La solution</span>
+  <div class="title">Trois gestes, en boucle, tout seuls.</div>
+  <div class="cards">
+    <div class="card"><div class="num">01</div><div class="ct">Mesurer</div><div class="cd">Chaque prise mesure la consommation réelle de l'appareil branché, en temps réel.</div></div>
+    <div class="card"><div class="num">02</div><div class="ct">Comprendre</div><div class="cd">L'IA décide quoi couper ou décaler hors des heures de pointe, selon la priorité de l'appareil.</div></div>
+    <div class="card"><div class="num">03</div><div class="ct">Agir</div><div class="cd">La prise coupe physiquement le gaspillage, sans que vous ayez à y penser.</div></div>
+  </div>
+  <div class="foot">EcoWatt</div><div class="pg">09</div>
+</section>
+
+<!-- 10. IA -->
+<section class="slide light">
+  <span class="tag sol">La solution</span>
+  <div class="title">Une IA qui n'exécute pas seulement.<br>Elle <span class="accent">explique.</span></div>
+  <ul class="points">
+    <li>Chaque décision justifiée en langage clair : « j'ai coupé le fer, c'est l'heure de pointe ».</li>
+    <li>Vous lui parlez, à la voix ou au clavier : « avec 5000 F de crédit, je tiens combien de jours ? »</li>
+    <li>Elle prédit quel appareil va coûter le plus ce mois, et convertit tout en FCFA réels (barème CIE).</li>
+  </ul>
+  <div class="foot">EcoWatt</div><div class="pg">10</div>
+</section>
+
+<!-- 11. DEMO -->
+<section class="slide light">
+  <span class="tag sol">La démo</span>
+  <div class="title big">Et la courbe chute.<br><span class="accent">En direct.</span></div>
+  <div class="sub lead">Pas une maquette. Un vrai boîtier, une vraie prise, une vraie coupure sous vos yeux, avec l'explication de l'IA à l'écran.</div>
+  <div class="foot">EcoWatt</div><div class="pg">11</div>
+</section>
+
+<!-- 12. INNOVATION -->
+<section class="slide light">
+  <span class="tag sol">Innovation</span>
+  <div class="title">Les autres font des chatbots.<br>Nous, des prises qui <span class="accent">agissent.</span></div>
+  <div class="sub lead">EcoWatt ne se contente pas de conseiller. Il agit, en temps réel, sur le courant réel. C'est la différence entre parler d'économies et les faire.</div>
+  <div class="foot">EcoWatt</div><div class="pg">12</div>
+</section>
+
+<!-- 13. IMPACT -->
+<section class="slide light">
+  <span class="tag sol">Impact</span>
+  <div class="title">Durable. Et <span class="accent">inclusif.</span></div>
+  <ul class="points">
+    <li>Moins de gaspillage, c'est une facture allégée, surtout pour les foyers modestes.</li>
+    <li>Le tarif social CIE est intégré : pensé pour les petits budgets et le compteur prépayé.</li>
+    <li>Chaque kWh non gaspillé, c'est moins de CO₂. L'économie de la famille rejoint celle de la planète.</li>
+  </ul>
+  <div class="foot">EcoWatt</div><div class="pg">13</div>
+</section>
+
+<!-- 14. FAISABILITE -->
+<section class="slide light">
+  <span class="tag sol">Faisabilité</span>
+  <div class="title">Du matériel réel. Aujourd'hui.</div>
+  <ul class="points">
+    <li>ESP32 + capteurs de courant + relais commandables : le boîtier existe et fonctionne.</li>
+    <li>Mesure en temps réel, coupure physique, dashboard live déjà opérationnels.</li>
+    <li>Cerveau IA branché sur les vraies mesures. Ce n'est pas une promesse, c'est démontrable.</li>
+  </ul>
+  <div class="foot">EcoWatt</div><div class="pg">14</div>
+</section>
+
+<!-- 15. EQUIPE -->
+<section class="slide light">
+  <span class="tag sol">L'équipe</span>
+  <div class="title">La Coding Team</div>
+  <div class="names">
+    Anne Bérénice &nbsp;·&nbsp; Ange &nbsp;·&nbsp; Auriane &nbsp;·&nbsp; Junior<br>
+    <b>Kader</b> — lead technique
+  </div>
+  <div class="foot">EcoWatt</div><div class="pg">15</div>
+</section>
+
+<!-- 16. CLOTURE -->
+<section class="slide dark glow">
+  <div class="title huge">Rendons l'invisible visible.<br>Pour <span class="accent">chaque foyer ivoirien.</span></div>
+  <div class="sub lead" style="margin-top:10mm;">⚡ EcoWatt</div>
+  <div class="note">🎤 Terminer par : « Des questions ? On adore ça. » et laisser le jury venir à vous.</div>
+  <div class="foot">EcoWatt · Vibeathon 2026</div><div class="pg">16</div>
+</section>
+
+</body>
+</html>

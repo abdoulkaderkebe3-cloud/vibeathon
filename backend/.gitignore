@@ -1,0 +1,7 @@
+.env
+__pycache__/
+*.pyc
+.venv/
+venv/
+ecowatt.db
+.pytest_cache/

@@ -1,0 +1,4 @@
+# Dépendances de développement (linting, tests). Installer avec :
+#   pip install -r requirements.txt -r requirements-dev.txt
+-r requirements.txt
+ruff==0.15.20

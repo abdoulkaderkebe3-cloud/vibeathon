@@ -1,0 +1,17 @@
+# Configuration Ruff — linter & formateur Python du backend EcoWatt.
+# Lancer :  ruff check .        (analyse)
+#           ruff format .       (formatage)
+target-version = "py310"
+line-length = 100
+
+[lint]
+# E/W: pycodestyle · F: pyflakes · I: imports triés · B: bugbear · UP: pyupgrade
+# C4: comprehensions · SIM: simplifications
+select = ["E", "W", "F", "I", "B", "UP", "C4", "SIM"]
+ignore = [
+    "E501",  # longueur de ligne gérée par le formateur, pas bloquante ici
+    "B008",  # appels dans les valeurs par défaut (patron FastAPI Depends)
+]
+
+[lint.per-file-ignores]
+"tests/*" = ["B", "SIM"]  # les tests peuvent être plus verbeux/explicites

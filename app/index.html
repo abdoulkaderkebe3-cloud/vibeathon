@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/icon-192.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <title>EcoWatt — l'électricité pilotée par IA</title>
+    <meta
+      name="description"
+      content="EcoWatt : des prises intelligentes qui mesurent la consommation appareil par appareil et qu'une IA pilote pour couper le gaspillage aux heures de pointe. Chaque décision est expliquée, et la facture prédite au tarif CIE. Vibeathon Côte d'Ivoire 2026."
+    />
+    <meta name="theme-color" content="#b45309" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="EcoWatt — l'électricité pilotée par IA" />
+    <meta
+      property="og:description"
+      content="Des prises intelligentes pilotées par IA pour couper le gaspillage et prédire la facture au tarif CIE. Démo en direct."
+    />
+    <meta property="og:url" content="https://ecowatt-rose.vercel.app" />
+    <meta property="og:image" content="https://ecowatt-rose.vercel.app/icon-512.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="EcoWatt — l'électricité pilotée par IA" />
+    <meta
+      name="twitter:description"
+      content="Des prises intelligentes pilotées par IA pour couper le gaspillage et prédire la facture au tarif CIE. Démo en direct."
+    />
+    <meta name="twitter:image" content="https://ecowatt-rose.vercel.app/icon-512.png" />
+    <script>
+      // Applique le thème avant le premier rendu (évite le flash clair->sombre)
+      try {
+        if (localStorage.getItem('ecowatt-theme') === 'dark') {
+          document.documentElement.classList.add('dark')
+        }
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

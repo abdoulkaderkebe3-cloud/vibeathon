@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<title>EcoWatt — Guide complet</title>
+<style>
+  :root {
+    --ink: #1c1917;
+    --muted: #6b6560;
+    --amber-700: #b45309;
+    --amber-600: #d97706;
+    --amber-500: #f59e0b;
+    --amber-400: #fbbf24;
+    --amber-100: #fef3c7;
+    --amber-50: #fffbeb;
+    --line: #e8e2d6;
+    --paper: #ffffff;
+    --soft: #faf6ee;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  @page { size: A4; margin: 12mm; }
+  body {
+    font-family: "Segoe UI", system-ui, -apple-system, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    font-size: 12.5px;
+    line-height: 1.6;
+    background: var(--paper);
+  }
+  h1, h2, h3, h4 { letter-spacing: -0.01em; line-height: 1.2; }
+
+  /* ---- Couverture ---- */
+  .cover {
+    background: linear-gradient(135deg, #f59e0b 0%, #b45309 100%);
+    color: #fff;
+    padding: 34mm 16mm 20mm;
+    min-height: 208mm;
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
+  .cover::after {
+    content: "";
+    position: absolute; right: -40mm; top: -30mm;
+    width: 120mm; height: 120mm; border-radius: 50%;
+    background: rgba(255,255,255,0.12);
+  }
+  .cover .badge {
+    display: inline-block; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    background: rgba(255,255,255,0.2); padding: 6px 14px; border-radius: 999px; margin-bottom: 28px;
+  }
+  .cover h1 { font-size: 84px; font-weight: 800; letter-spacing: -0.03em; }
+  .cover h1 span { color: #fde68a; }
+  .cover .tag { font-size: 18px; font-weight: 400; max-width: 130mm; margin-top: 14px; color: #fff8ec;
+    border-left: 3px solid rgba(255,255,255,0.5); padding-left: 16px; }
+  .cover .meta { margin-top: 40mm;
+    display: flex; gap: 26px; flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,0.3); padding-top: 18px; }
+  .cover .meta .k { font-size: 9px; text-transform: uppercase; letter-spacing: 0.16em; color: #ffe8c4; }
+  .cover .meta .v { font-size: 14px; font-weight: 600; }
+
+  /* ---- Pages ---- */
+  .page { padding: 4mm 0; }
+  section { padding: 8mm 0 4mm; page-break-inside: avoid; }
+  .wrap { padding: 0; }
+
+  .sechead { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+  .num {
+    width: 32px; height: 32px; border-radius: 10px; flex: 0 0 32px;
+    background: linear-gradient(135deg, var(--amber-500), var(--amber-700));
+    color: #fff; font-weight: 800; font-size: 14px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  h2 { font-size: 24px; font-weight: 800; }
+  h3 { font-size: 14px; font-weight: 700; margin: 16px 0 6px; color: var(--amber-700); }
+  p { margin-bottom: 9px; }
+  strong { font-weight: 700; }
+  a { color: var(--amber-700); }
+
+  ul { list-style: none; margin: 6px 0 10px; }
+  ul li { padding-left: 18px; position: relative; margin-bottom: 6px; }
+  ul li::before { content: ""; position: absolute; left: 0; top: 8px; width: 7px; height: 7px;
+    border-radius: 2px; background: var(--amber-500); }
+
+  ol.steps { counter-reset: s; list-style: none; margin: 8px 0 10px; }
+  ol.steps > li { counter-increment: s; position: relative; padding-left: 34px; margin-bottom: 11px; }
+  ol.steps > li::before { content: counter(s); position: absolute; left: 0; top: -2px;
+    width: 22px; height: 22px; border-radius: 50%; background: var(--amber-100); color: var(--amber-700);
+    font-weight: 800; font-size: 12px; display: flex; align-items: center; justify-content: center; }
+
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 8px 0; }
+  .card { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; background: var(--paper);
+    page-break-inside: avoid; }
+  .card .t { font-weight: 700; font-size: 13px; margin-bottom: 3px; }
+  .card .t .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+    background: var(--amber-500); margin-right: 7px; vertical-align: middle; }
+  .card .d { font-size: 11.5px; color: var(--muted); }
+
+  .callout { border: 1px solid var(--amber-100); background: var(--amber-50); border-left: 4px solid var(--amber-500);
+    border-radius: 10px; padding: 11px 14px; margin: 10px 0; page-break-inside: avoid; }
+  .callout.warn { border-color: #fecaca; background: #fef2f2; border-left-color: #ef4444; }
+  .callout .lbl { font-size: 9px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--amber-700); font-weight: 700; margin-bottom: 3px; }
+  .callout.warn .lbl { color: #b91c1c; }
+
+  table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 11.5px; }
+  th, td { text-align: left; padding: 8px 9px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { text-transform: uppercase; letter-spacing: 0.08em; font-size: 9px; color: var(--muted);
+    border-bottom: 1.5px solid var(--amber-500); }
+  td.k { font-weight: 700; white-space: nowrap; }
+
+  code, .mono { font-family: "Consolas", "Courier New", monospace; font-size: 11px;
+    background: var(--soft); border: 1px solid var(--line); border-radius: 5px; padding: 1px 5px; }
+  pre { background: #1c1917; color: #fef3c7; border-radius: 10px; padding: 12px 14px; margin: 8px 0;
+    font-family: "Consolas", "Courier New", monospace; font-size: 11px; line-height: 1.5; overflow: hidden;
+    white-space: pre-wrap; page-break-inside: avoid; }
+  pre .c { color: #a8a29e; }
+
+  .flow { margin: 8px 0; }
+  .flow .node { border: 1px solid var(--line); border-radius: 10px; padding: 9px 12px; background: var(--soft); }
+  .flow .node b { display: block; font-size: 12.5px; }
+  .flow .node span { font-size: 11px; color: var(--muted); }
+  .flow .arr { text-align: center; color: var(--amber-600); font-weight: 700; padding: 3px 0; }
+
+  .lead { font-size: 15px; font-weight: 500; color: #3a3530; margin-bottom: 10px; }
+  .foot { text-align: center; color: var(--muted); font-size: 10px; padding: 10mm 0 2mm; letter-spacing: 0.04em; }
+  .pagebreak { page-break-before: always; }
+</style>
+</head>
+<body>
+
+  <!-- COUVERTURE -->
+  <div class="cover">
+    <div class="badge">Vibeathon Côte d'Ivoire 2026 · Secteur Énergie</div>
+    <h1>Eco<span>Watt</span></h1>
+    <div class="tag">Un réseau de prises intelligentes piloté par IA qui mesure la consommation
+      réelle, coupe le gaspillage et décale les usages, expliqué et prêt à connecter au matériel.</div>
+    <div class="meta">
+      <div><div class="k">Document</div><div class="v">Guide complet</div></div>
+      <div><div class="k">Équipe</div><div class="v">Coding Team</div></div>
+      <div><div class="k">Lead technique</div><div class="v">Kader</div></div>
+      <div><div class="k">Date</div><div class="v">Juillet 2026</div></div>
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="wrap">
+
+      <!-- 1. LE PROJET -->
+      <section>
+        <div class="sechead"><div class="num">1</div><h2>Le projet en bref</h2></div>
+        <p class="lead">Aucun foyer ivoirien ordinaire n'a de compteur intelligent. EcoWatt en fabrique
+          un, accessible : des prises qui mesurent chaque appareil, et une IA qui coupe le gaspillage
+          et décale les usages hors des heures de pointe.</p>
+        <h3>Le problème</h3>
+        <ul>
+          <li>Les factures montent sans qu'on comprenne pourquoi.</li>
+          <li>Zéro visibilité sur la consommation, appareil par appareil.</li>
+          <li>Les pics en heure de pointe surchargent le réseau et provoquent des coupures.</li>
+          <li>L'électricité venant surtout du gaz, chaque kWh gaspillé émet du CO2.</li>
+        </ul>
+        <h3>La solution</h3>
+        <p>Chaque prise intelligente (ESP32 + capteur + relais) mesure la consommation réelle et peut
+          couper l'appareil. Une IA reçoit les mesures, décide quoi couper ou décaler, commande la
+          bonne prise, et explique chaque décision.</p>
+        <h3>Comment l'IA décide (4 facteurs)</h3>
+        <table>
+          <tr><th>Facteur</th><th>Rôle</th></tr>
+          <tr><td class="k">Priorité de l'appareil</td><td>Essentiel (jamais coupé), reportable (décalable), confort.</td></tr>
+          <tr><td class="k">Le moment</td><td>En heure de pointe, le réseau est chargé et l'électricité la plus polluante.</td></tr>
+          <tr><td class="k">L'objectif</td><td>À l'approche d'un budget, on déleste les appareils reportables.</td></tr>
+          <tr><td class="k">La conso réelle</td><td>Mesurée par la prise, en temps réel.</td></tr>
+        </table>
+      </section>
+
+      <!-- 2. FONCTIONNALITES -->
+      <section>
+        <div class="sechead"><div class="num">2</div><h2>Les fonctionnalités livrées</h2></div>
+        <div class="cards">
+          <div class="card"><div class="t"><span class="dot"></span>Tableau de bord temps réel</div><div class="d">Conso instantanée, appareils actifs, énergie évitée, économies. Graphe de consommation en direct.</div></div>
+          <div class="card"><div class="t"><span class="dot"></span>Assistant IA conversationnel</div><div class="d">Un vrai LLM (Llama 3.3 70B via Groq) qui répond à tout sur EcoWatt et exécute des ordres ("coupe la bouilloire").</div></div>
+          <div class="card"><div class="t"><span class="dot"></span>Commande vocale</div><div class="d">Dictée au micro (Chrome/Edge) et lecture à voix haute des réponses (dont Firefox).</div></div>
+          <div class="card"><div class="t"><span class="dot"></span>Décisions de l'IA</div><div class="d">Historique de chaque coupure/rallumage, toujours justifié en langage clair.</div></div>
+          <div class="card"><div class="t"><span class="dot"></span>Impact</div><div class="d">kWh, FCFA et CO2 économisés, calculés sur la conso réellement évitée + projection nationale.</div></div>
+          <div class="card"><div class="t"><span class="dot"></span>Historique</div><div class="d">Évolution de la consommation et journal des évènements.</div></div>
+          <div class="card"><div class="t"><span class="dot"></span>Réseau</div><div class="d">État du backend, du cerveau IA, du transport, et liste des prises connectées.</div></div>
+          <div class="card"><div class="t"><span class="dot"></span>Réglages</div><div class="d">Heure de pointe, seuil de pic, objectif d'économies, modèle IA.</div></div>
+          <div class="card"><div class="t"><span class="dot"></span>Mode démo / réel</div><div class="d">Un interrupteur bascule à chaud entre scénario simulé et données réelles du backend.</div></div>
+          <div class="card"><div class="t"><span class="dot"></span>Mode sombre (noir pur)</div><div class="d">Bouton dédié, tous les éléments gérés comme en clair, choix mémorisé.</div></div>
+          <div class="card"><div class="t"><span class="dot"></span>Responsive</div><div class="d">Du plein écran au mobile, avec sidebar en tiroir sur petit écran.</div></div>
+          <div class="card"><div class="t"><span class="dot"></span>Auto-découverte</div><div class="d">Aucun appareil pré-inscrit : dès qu'une prise se branche, elle apparaît toute seule.</div></div>
+        </div>
+      </section>
+
+      <!-- 3. UTILISER L'APP -->
+      <section class="pagebreak">
+        <div class="sechead"><div class="num">3</div><h2>Comment utiliser l'application</h2></div>
+
+        <h3>Lancer l'application (en local)</h3>
+        <pre><span class="c"># Backend (API + IA)</span>
+cd backend
+.venv/Scripts/python -m uvicorn app.main:app --host 0.0.0.0 --port 8000
+
+<span class="c"># Frontend (dashboard)</span>
+cd app
+npm run dev        <span class="c"># ouvre http://localhost:5173</span></pre>
+
+        <h3>Naviguer</h3>
+        <p>La barre latérale gauche donne accès à toutes les pages : Tableau de bord, Assistant IA,
+          Appareils, Décisions IA, Impact, Historique, Réseau, Réglages. Sur mobile, un bouton menu
+          ouvre la barre en tiroir.</p>
+
+        <h3>Mode démo ou réel</h3>
+        <ul>
+          <li><strong>Mode démo</strong> (par défaut) : l'app rejoue un scénario simulé, sans matériel. Idéal pour présenter.</li>
+          <li><strong>Mode réel</strong> : clique la carte "Mode démo" en bas de la barre pour basculer. Le dashboard se connecte au backend et affiche les vraies prises. Vide tant qu'aucun matériel n'est branché.</li>
+        </ul>
+
+        <h3>Parler à l'IA</h3>
+        <ol class="steps">
+          <li>Va sur <strong>Assistant IA</strong>.</li>
+          <li>Écris une question ("Quel appareil consomme le plus ?") ou un ordre ("Coupe la bouilloire").</li>
+          <li>Ou clique le <strong>micro</strong> (Chrome/Edge), parle, et l'IA n'envoie qu'à la fin de ta phrase.</li>
+          <li>Active <strong>Lecture vocale</strong> pour qu'elle lise ses réponses à voix haute.</li>
+        </ol>
+
+        <h3>Mode sombre</h3>
+        <p>Le bouton soleil/lune en haut à droite bascule en noir pur. Le choix est mémorisé.</p>
+      </section>
+
+      <!-- 4. ARCHITECTURE -->
+      <section>
+        <div class="sechead"><div class="num">4</div><h2>Architecture &amp; technologies</h2></div>
+        <div class="flow">
+          <div class="node"><b>Boîtier ESP32 (prise)</b><span>Mesure la puissance, coupe/rallume via relais.</span></div>
+          <div class="arr">↓ &nbsp; WiFi (WebSocket) ou Bluetooth (BLE)</div>
+          <div class="node"><b>Backend — Python / FastAPI + SQLite</b><span>Ingestion, cerveau IA, actionneur, calcul d'impact, historique.</span></div>
+          <div class="arr">↓ &nbsp; WebSocket temps réel</div>
+          <div class="node"><b>Dashboard — React / Vite / Tailwind</b><span>Conso live, décisions, impact, assistant IA.</span></div>
+        </div>
+        <table>
+          <tr><th>Couche</th><th>Technologie</th></tr>
+          <tr><td class="k">Prises / firmware</td><td>ESP32 + capteur de courant + relais (Arduino / PlatformIO)</td></tr>
+          <tr><td class="k">Communication</td><td>WebSocket direct (WiFi) ou BLE (Bluetooth), sans broker</td></tr>
+          <tr><td class="k">Backend</td><td>Python, FastAPI, SQLite</td></tr>
+          <tr><td class="k">Application</td><td>React 19, Vite, TypeScript, Tailwind CSS</td></tr>
+          <tr><td class="k">Cerveau IA</td><td>Llama 3.3 70B via Groq (gratuit), fournisseur interchangeable</td></tr>
+        </table>
+      </section>
+
+      <!-- 5. HARDWARE WIFI -->
+      <section class="pagebreak">
+        <div class="sechead"><div class="num">5</div><h2>Brancher le matériel — WiFi</h2></div>
+        <p class="lead">Le boîtier et le PC (backend) doivent être sur le même réseau WiFi. Le boîtier
+          vise l'IP locale du PC. Dès sa première mesure, l'appareil apparaît tout seul.</p>
+
+        <h3>a. Matériel par prise</h3>
+        <ul>
+          <li><strong>ESP32</strong> (le cerveau du boîtier).</li>
+          <li><strong>Capteur de courant</strong> (ex. SCT-013 + circuit de mesure) : mesure la consommation.</li>
+          <li><strong>Module relais</strong> conçu pour le secteur : coupe/rallume l'appareil.</li>
+        </ul>
+        <div class="callout warn"><div class="lbl">Sécurité 220V</div>
+          On manipule du 220 volts, c'est dangereux. Modules secteur uniquement, jamais de fil nu
+          sous tension, montage supervisé par quelqu'un qui s'y connaît.</div>
+
+        <h3>b. Côté PC</h3>
+        <ol class="steps">
+          <li>PC et ESP32 sur le <strong>même WiFi</strong>.</li>
+          <li>Récupérer l'<strong>IP locale du PC</strong> (<code>ipconfig</code> → adresse IPv4 du Wi-Fi). Exemple actuel : <code>192.168.1.19</code>.</li>
+          <li>Lancer le backend en écoute réseau : <code>uvicorn app.main:app --host 0.0.0.0 --port 8000</code>.</li>
+          <li>Autoriser Python dans le <strong>pare-feu Windows</strong> (fenêtre au 1er lancement).</li>
+        </ol>
+
+        <h3>c. Configurer le firmware</h3>
+        <p>Dans <code>firmware/src/main.cpp</code>, en haut :</p>
+        <pre>WIFI_SSID        = "TON_WIFI";          <span class="c">// même WiFi que le PC</span>
+WIFI_PASS        = "TON_MOT_DE_PASSE";
+BACKEND_HOST     = "192.168.1.19";      <span class="c">// IP locale du PC</span>
+BACKEND_PORT     = 8000;
+PRISE_ID         = "p1";                <span class="c">// unique par prise</span>
+DEVICE_ID        = "kettle-1";
+DEVICE_NAME      = "Bouilloire";        <span class="c">// nom affiché</span>
+DEVICE_PRIORITE  = "reportable";        <span class="c">// essentiel | reportable | confort</span></pre>
+
+        <h3>d. Flasher l'ESP32</h3>
+        <pre>cd firmware
+pio run -t upload      <span class="c"># compile et téléverse (USB)</span>
+pio device monitor     <span class="c"># logs : [wifi] IP ... puis [ws] connecte au backend</span></pre>
+
+        <h3>e. Voir l'appareil apparaître</h3>
+        <ol class="steps">
+          <li>Dans l'app, passer en <strong>Mode réel</strong>.</li>
+          <li>Alimenter le boîtier.</li>
+          <li>À la première mesure, l'appareil <strong>apparaît automatiquement</strong> sur le dashboard, la conso monte, l'IA peut le piloter.</li>
+        </ol>
+
+        <div class="callout"><div class="lbl">Calibration (important)</div>
+          Dans <code>readWatts()</code>, la constante <code>AMPS_PER_ADC</code> est à 0 par défaut. Pour
+          des watts justes, branche une charge connue (ex. ampoule 60 W), relève la valeur du capteur,
+          et ajuste ce facteur. Sans calibration, la prise remonte 0 W (mais connexion et relais marchent).</div>
+      </section>
+
+      <!-- 6. HARDWARE BLUETOOTH -->
+      <section>
+        <div class="sechead"><div class="num">6</div><h2>Brancher le matériel — Bluetooth (option)</h2></div>
+        <p>Le WiFi reste recommandé (portée, always-on, multi-prises). Le Bluetooth est un plan B
+          quand il n'y a pas de WiFi. Le cerveau (IA, impact, dashboard) est identique.</p>
+        <h3>Côté PC</h3>
+        <pre>pip install bleak
+set ECOWATT_BLE=1
+.venv/Scripts/python -m uvicorn app.main:app --host 0.0.0.0 --port 8000</pre>
+        <h3>Côté boîtier</h3>
+        <ul>
+          <li>Flasher <code>firmware/ble/main_ble.cpp</code> à la place du firmware WiFi.</li>
+          <li>Mêmes réglages <code>PRISE_ID</code> / <code>DEVICE_ID</code> / <code>DEVICE_NAME</code> / <code>DEVICE_PRIORITE</code>.</li>
+        </ul>
+        <p>Le boîtier annonce un nom <code>EcoWatt-…</code> ; le backend le détecte, s'abonne aux mesures
+          et envoie les ordres. WiFi et Bluetooth peuvent coexister sur le même dashboard. Nécessite un
+          adaptateur Bluetooth sur le PC.</p>
+      </section>
+
+      <!-- 7. DEPANNAGE -->
+      <section>
+        <div class="sechead"><div class="num">7</div><h2>Dépannage</h2></div>
+        <table>
+          <tr><th>Symptôme</th><th>Cause probable / solution</th></tr>
+          <tr><td class="k">"Connexion au backend..." reste affiché</td><td>Backend non lancé, ou pas en <code>--host 0.0.0.0</code>. Tester <code>http://IP_DU_PC:8000/docs</code>.</td></tr>
+          <tr><td class="k">L'appareil n'apparaît pas</td><td>PC et ESP32 pas sur le même WiFi, mauvaise IP dans le firmware, ou pare-feu qui bloque le port 8000.</td></tr>
+          <tr><td class="k">WebSocket se déconnecte en boucle</td><td>IP/port faux ou pare-feu. Vérifier les logs <code>pio device monitor</code>.</td></tr>
+          <tr><td class="k">Conso à 0 W</td><td>Capteur non calibré (voir §5.e) ou relais coupé.</td></tr>
+          <tr><td class="k">Le micro n'apparaît pas</td><td>Reconnaissance vocale non supportée par Firefox : utiliser Chrome ou Edge.</td></tr>
+          <tr><td class="k">L'IA répond de façon générique</td><td>Quota gratuit atteint ou clé absente : l'app retombe sur des règles. Vérifier la clé et le fournisseur.</td></tr>
+        </table>
+      </section>
+
+    </div>
+    <div class="foot">EcoWatt · Coding Team · Vibeathon Côte d'Ivoire 2026 · Guide complet</div>
+  </div>
+
+</body>
+</html>
